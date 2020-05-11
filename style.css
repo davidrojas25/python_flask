@@ -1,0 +1,21 @@
+h1{
+   color:red; 
+   font-family:'Original Surfer', cursive;
+}
+
+h2{
+ color:red; 
+ font-family:'Original Surfer', cursive;
+}
+.form1600 {
+    background-image: url(images/tracksunset.jpg);
+    border:black 5px solid;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 80%;
+    color: white;
+    font-family: 'Original Surfer', cursive;
+}
+.center{
+    text-align: center;
+}
