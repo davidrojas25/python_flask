@@ -20,18 +20,23 @@ h2{
     font-family: 'Original Surfer', cursive;
 }
 .homepagebg{
-  background-image: url(images/tracksunset.jpg);
+  background-image:
+   linear-gradient(black, black),
+   url(images/tracksunset.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
-  background-size: cover;  
+  background-size: cover; 
+  background-blend-mode: saturation;
+   
 }    
 
 .center{
     text-align: center;
 }
 .logo-medium {
-    width: 50%
+    width: 50%;
+    
     
 }
 .pagetitle {border-bottom:1px solid #cccccc; padding-bottom:30px; margin-bottom:30px;}
