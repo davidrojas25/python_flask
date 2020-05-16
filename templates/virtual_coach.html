@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br>
+<!-- Virtual coach page starts here-->
+<h1 class="center">Welcome to our Virtual Coach Utility</h1>
+<br>
+<!-- form for 1600 starts here-->
+<div class="container">    
+<form class="form1600" method="GET">
+ <h2>1600 Meter</h2>
+ <div class="form-group">
+ <label for="firstnametag"> FIRST NAME:</label>
+ <input id="firstnametag" type="text" name="firstname" value="" placeholder="Your first name here">
+ </div>
+ <br>
+ <div class="form-group">
+ <label for="lastnametag"> LAST NAME:</label>
+ <input id="lastnametag" type="text" name="lastname" value="" placeholder="Your last name here">
+ </div>
+ <br>
+ <div class="form-group">
+ <p>What racing tactic do you plan to execute?</p>
+ <select name="tactic">
+     <option value="frontrunner">Front Runner - Take an early lead, push the pass, and dare anyone to stay with you!</option>
+     <option value="runfrombehind">Run From Behind - Start near back of lead pack, negative splits, pass fading competition!</option>
+     <option value="even">Even Pace - Run very even paces, disregard competitor paces, aim for a PR!</option>
+ </select>
+ </div>
+ <br>
+ <div class="form-group">
+ <p>What time are you aiming to run?</p>
+ <label for="mintag"> Minutes:</label>
+ <input id="mintag" type="number" name="minutes" value="0" size="2">
+ <label for="mintag"> Seconds</label>
+ <input id="mintag" type="number" name="seconds" value="0" size="4">
+ </div>
+ <br>
+ <br>
+ <input class="btn btn-danger" type="submit" name="" value="Send to Virtual Coach">
+
+</form>
+</div>
+
+
+<script src="" async defer></script>
+</body>
+</html>
+    
+{% endblock content %}

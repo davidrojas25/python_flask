@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <br>
+    <!-- Contact us page starts here-->
+    <h1 class="center">We are waiting to hear from you!</h1>
+    <br>
+    <div style="background-image: url({{ url_for('static', filename='img/tracksunset.jpg') }})" class="container homepagebg">
+    <!-- contact us form starts here-->
+    <div class="container">
+    <form>
+        <br>
+        <div class="row">
+        <div class="col">
+            <input type="text" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="Last name">
+        </div>
+        </div>
+        <br>
+        <div class="row">
+        <div class="col">
+            <input type="email" class="form-control" placeholder="Email Address">
+        </div>
+        <div class="col">
+            <input type="tel" class="form-control" placeholder="Phone Number">
+        </div>
+        </div>
+        <br>
+        <div class="row">
+        <div class="col">
+        <textarea id="message" class="form-control" name="message" rows="3" placeholder="Tell us what's on your mind..."></textarea>
+        </div>
+        </div>
+        <br>
+        <input class="btn btn-primary btn-dark" type="submit" value="Submit">
+        <br>
+    </form>
+    </div>
+       
+    
+{% endblock content %}

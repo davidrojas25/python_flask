@@ -12,8 +12,22 @@
         <link rel="stylesheet" href="">
     </head>
     <body>
-      <h1>Welcome to the Site!</h1>
-      <h2>Here is a pic of a puppy</h2>
+      <h1>{{ name }}, Welcome to the Site!</h1>
+      <h2>{{ letters[0]}} is the first letter in {{ name }}'s name</h2>
+      <h3>Here are the letters in {{ name }}'s name:</h3>
+      <ul>
+          {% for item in name %}
+          <li>{{ item }}</li>
+          {% endfor %}
+      </ul>
+
+      {% if 'o' in name %}
+    <p>Found the o!</p>
+    {% else %}
+    <p>hmmm. o not in this name</p>
+    {% endif %}
+
+      <h2>Here is a pic {{ name }}'s puppy. His name is {{ pup_dict['pup_name'] }}</h2>
       <img src="../static/puppy.jpg" alt="puppy">
         
         <script src="" async defer></script>
