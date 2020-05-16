@@ -9,23 +9,23 @@
     <div style="background-image: url({{ url_for('static', filename='img/tracksunset.jpg') }})" class="container homepagebg">
     <!-- contact us form starts here-->
     <div class="container">
-    <form>
+    <form action="{{url_for('thankyou')}}">
         <br>
         <div class="row">
         <div class="col">
-            <input type="text" class="form-control" placeholder="First name">
+            <input type="text" class="form-control" name="first" placeholder="First name">
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="Last name">
+            <input type="text" class="form-control" name="last" placeholder="Last name">
         </div>
         </div>
         <br>
         <div class="row">
         <div class="col">
-            <input type="email" class="form-control" placeholder="Email Address">
+            <input type="email" class="form-control" name="email" placeholder="Email Address">
         </div>
         <div class="col">
-            <input type="tel" class="form-control" placeholder="Phone Number">
+            <input type="tel" class="form-control" name="phonenumber"placeholder="Phone Number">
         </div>
         </div>
         <br>
