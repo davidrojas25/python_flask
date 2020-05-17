@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <br>
+    <div class="container">
+    <h1>Warriors Virtual Coach says:</h1>
+    
+    {% if session['strategy'] == 'even_pace' %}
+    <h2>{{ session['first'] }} {{ session['last']}} since you are planning to run an "Even Pace" and are aiming to run 
+        a time of {{ session['target_min']}}:{{ session['target_sec'] }} here are the paces per lap I recommend: </h2>
+    <ul> 
+        <li>lap1: {{ session['perlapmin'] }}:{{ session['perlapsec'] }}</li>
+        <li>lap2: {{ session['perlapmin'] }}:{{ session['perlapsec'] }} </li>
+        <li>lap3: {{ session['perlapmin'] }}:{{ session['perlapsec'] }} </li>
+        <li>lap4: {{ session['perlapmin'] }}:{{ session['perlapsec'] }} </li>
+    </ul>
+
+    {% elif session['strategy'] == 'front_runner' %}
+    <h2>{{ session['first'] }} {{ session['last']}} since you are planning to run as a "Front Runner" and are aiming to run 
+        a time of {{ session['target_min']}}:{{ session['target_sec'] }}, here are the paces per lap I recommend: </h2>
+    <ul> 
+        <li>lap1: {{ session['fr_lap1min'] }}:{{ session['fr_lap1sec'] }}</li>
+        <li>lap2: {{ session['fr_lap2min'] }}:{{ session['fr_lap2sec'] }} </li>
+        <li>lap3: {{ session['fr_lap3min'] }}:{{ session['fr_lap3sec'] }} </li>
+        <li>lap4: {{ session['fr_lap4min'] }}:{{ session['fr_lap4sec'] }} </li>
+    </ul>
+
+    {% elif session['strategy'] == 'off_pace' %}
+    <h2>{{ session['first'] }} {{ session['last']}} since you are planning to run "Off the Pace" and are aiming to run 
+        a time of {{ session['target_min']}}:{{ session['target_sec'] }}, here are the paces per lap I recommend: </h2>
+    <ul> 
+        <li>lap1: {{ session['op_lap1min'] }}:{{ session['op_lap1sec'] }}</li>
+        <li>lap2: {{ session['op_lap2min'] }}:{{ session['op_lap2sec'] }} </li>
+        <li>lap3: {{ session['op_lap3min'] }}:{{ session['op_lap3sec'] }} </li>
+        <li>lap4: {{ session['op_lap4min'] }}:{{ session['op_lap4sec'] }} </li>
+    </ul>
+    {% endif %}
+    </div>
+
+        
+    
+{% endblock content %}
