@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <br>
+        <h1 class="center">Welcome to our Warrior Runner Database! </h1>
+        <h2 class="center">Below is the list of Coaches</h2>
+        <br>
+        <div class="container">
+            <table class="table table-striped table-dark">
+                <tr>
+                  <th>Coach ID</th>  
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                </tr>
+                {% for coach in coaches %}
+                <tr>
+                  <td>{{ coach.id }}</td>
+                  <td>{{ coach.firstname }}</td>
+                  <td>{{ coach.lastname }}</td>
+                </tr>
+                {% endfor %}
+              </table>   
+        </div>
+    
+{% endblock content %}

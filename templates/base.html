@@ -53,6 +53,18 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                   </div>
                 </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Warrior Running Log
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url_for('list_runners') }}">Runner Database View</a>
+                    <a class="dropdown-item" href="{{ url_for('add_runner') }}">Add Runner</a>
+                    <a class="dropdown-item" href="{{ url_for('add_runner') }}">Add Coach</a>
+                    <a class="dropdown-item" href="{{ url_for('del_runner') }}">Delete Runner</a>
+                    
+                  </div>
+                </li>
               </ul>
             </div>
           </nav>

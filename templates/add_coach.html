@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <br>
+        <h1 class="center">Welcome to our Warrior Runner Database!</h1>
+        <h2 class="center">Add a Coach Below!</h2>
+        <br>
+        <div class="container">
+            <form method="POST">
+                {{ form.csrf_token }}
+                {{form.hidden_tag()}}
+                {{form.firstname.label}}{{form.firstname()}}
+                {{form.lastname.label}}{{form.lastname()}}
+                {{form.submit()}}
+
+            </form>
+        </div>
+        
+    
+{% endblock content %}

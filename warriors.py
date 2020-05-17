@@ -7,12 +7,16 @@ from wtforms import (StringField, BooleanField, DateTimeField,
 from wtforms.validators import DataRequired, InputRequired
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from warforms import AddForm, DelForm, AddCoachForm
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mysecretkey"
+
+### SQL DB Section #####
+basedir = os.path.abspath(os.path.dirname(__file__))
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -31,7 +35,7 @@ class Runners(db.Model):
     age = db.Column(db.Integer)
     group = db.Column(db.Text)
     runs = db.relationship('Run', backref='runner', lazy='dynamic') # one to many
-    coach = db.relationship('Coach', backref='runner', uselist=False) #one to one
+    coach_id = db.Column(db.Integer, db.ForeignKey('coaches.id'))
     
     
     def __init__(self, firstname, lastname, age, group):
@@ -58,6 +62,10 @@ class Run(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     item_name = db.Column(db.Text)
+    miles = db.Column(db.Float)
+    timehours = db.Column(db.Integer)
+    timemin = db.Column(db.Integer)
+    timesec = db.Column(db.Integer)
     runner_id = db.Column(db.Integer, db.ForeignKey('runners.id'))
     
     def __init__(self, item_name, runner_id):
@@ -71,11 +79,18 @@ class Coach(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
     firstname = db.Column(db.Text)
-    runner_id = db.Column(db.Integer, db.ForeignKey('runners.id'))   
+    lastname = db.Column(db.Text)
+    runners = db.relationship('Runners', backref='coaches', lazy='dynamic') # one to many
+      
     
-    def __init__(self, firstname, runner_id):
+    def __init__(self, firstname, lastname):
         self.firstname = firstname
-        self.runner_id = runner_id
+        self.lastname = lastname
+        
+        
+
+
+        
 
 class pacing1600(FlaskForm):
     
@@ -86,7 +101,8 @@ class pacing1600(FlaskForm):
     strategy = SelectField(u'Select your racing strategy:',
                            choices=[('front_runner', 'Front Runner'), ('even_pace', 'Even Pace'), ('off_pace', 'Run from Behind')])
     submit = SubmitField('Submit')
-     
+    
+### View Functions - Have Forms ####     
 
 @app.route('/')
 def index():
@@ -170,6 +186,72 @@ def thankyou():
 def page_not_found(e):
     return render_template('404.html'), 404
 
+@app.route('/add_runner', methods=['GET', 'POST'])
+def add_runner():
+    
+    form = AddForm()
+    
+    if form.validate_on_submit():
+        firstname = form.firstname.data
+        lastname = form.lastname.data
+        age = form.age.data
+        group = form.group.data 
+        new_runner = Runners(firstname, lastname, age, group)
+        db.session.add(new_runner)
+        db.session.commit()
+        
+        return redirect(url_for('list_runners'))
+        
+    return render_template('add_runner.html', form=form)   
+
+@app.route('/add_coach', methods=['GET', 'POST'])
+def add_coach():
+    
+    form = AddCoachForm()
+    
+    if form.validate_on_submit():
+        firstname = form.firstname.data
+        lastname = form.lastname.data
+        new_coach = Coach(firstname, lastname)
+        db.session.add(new_coach)
+        db.session.commit()
+        
+        return redirect(url_for('list_coaches'))
+        
+    return render_template('add_coach.html', form=form) 
+
+@app.route('/list_runners')
+def list_runners():
+    
+    runners = Runners.query.all()
+    return render_template('list_runners.html', runners=runners)
+
+@app.route('/list_coaches')
+def list_coaches():
+    
+    coaches = Coach.query.all()
+    return render_template('list_coaches.html', coaches=coaches)
+
+@app.route('/delete_runner', methods=['GET', 'POST'])
+def del_runner():
+    
+    form = DelForm()
+    
+    if form.validate_on_submit():
+        
+        id = form.id.data
+        runner = Runners.query.get(id)
+        db.session.delete(runner)
+        db.session.commit()
+        
+        return redirect(url_for('list_runners'))
+    return render_template('delete_runner.html', form=form)
+
+
+        
+        
+                                      
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
