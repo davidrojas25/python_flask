@@ -18,7 +18,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-Migrate(app,db)
+Migrate(app,db) # so you can make changes to actual db
+# steps to migrate are - flask db migrate -m "something" then flask db upgrade
 
 class Runners(db.Model):
     # manual table name choice
@@ -28,15 +29,53 @@ class Runners(db.Model):
     firstname = db.Column(db.Text)
     lastname = db.Column(db.Text)
     age = db.Column(db.Integer)
+    group = db.Column(db.Text)
+    runs = db.relationship('Run', backref='runner', lazy='dynamic') # one to many
+    coach = db.relationship('Coach', backref='runner', uselist=False) #one to one
     
-    def __init__(self, firstname, lastname, age):
+    
+    def __init__(self, firstname, lastname, age, group):
         self.firstname = firstname
         self.lastname = lastname
         self.age = age
+        self.group = group
         
     def __repr__(self):
-        return f"The Runner {self.firstname} {self.lastname} is {self.age} years old"    
+        if self.coach:
+            return f"Runner's name is {self.firstname} {self.lastname} and coach is {self.coach.firstname}"
+        else:
+            return f"Runner's name is {self.firstname} {self.lastname} and has no coach yet!" 
+        
+    def report_runs(self):
+       print("Here are my runs:")
+       for run in self.runs:
+           print(run.item_name)     
+            
     
+class Run(db.Model):
+    
+    __tablename__ = 'runs'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    item_name = db.Column(db.Text)
+    runner_id = db.Column(db.Integer, db.ForeignKey('runners.id'))
+    
+    def __init__(self, item_name, runner_id):
+        self.item_name = item_name
+        self.runner_id = runner_id
+        
+    
+
+class Coach(db.Model):
+    __tablename__ = 'coaches'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.Text)
+    runner_id = db.Column(db.Integer, db.ForeignKey('runners.id'))   
+    
+    def __init__(self, firstname, runner_id):
+        self.firstname = firstname
+        self.runner_id = runner_id
 
 class pacing1600(FlaskForm):
     
