@@ -1,12 +1,42 @@
+import os
 from flask import Flask, render_template, request, session, url_for, redirect
 from flask_wtf import FlaskForm
 from wtforms import (StringField, BooleanField, DateTimeField,
                      RadioField, SelectField, TextField, 
                      TextAreaField, SubmitField, IntegerField)
 from wtforms.validators import DataRequired, InputRequired
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "mysecretkey"
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+Migrate(app,db)
+
+class Runners(db.Model):
+    # manual table name choice
+    __tablename__ = 'runners'
+    
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.Text)
+    lastname = db.Column(db.Text)
+    age = db.Column(db.Integer)
+    
+    def __init__(self, firstname, lastname, age):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.age = age
+        
+    def __repr__(self):
+        return f"The Runner {self.firstname} {self.lastname} is {self.age} years old"    
+    
 
 class pacing1600(FlaskForm):
     
