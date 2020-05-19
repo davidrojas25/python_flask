@@ -11,7 +11,7 @@ def index():
 @app.route('/welcome')
 @login_required
 def welcome_user():
-    render_template('welcome_user.html')
+    return render_template('welcome_user.html')
     
 @app.route('/logout')
 @login_required
