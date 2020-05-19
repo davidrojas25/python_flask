@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+        <br>
+        <h1 class="center">Welcome to the NEW Warriors Youth Running Website!</h1>
+        <h1 class="center">Coming Soon!</h1>
+        <br>
+        <form method='POST'>
+                {{ form.csrf_token }}
+                {{ form.hidden_tag() }}
+                {{ form.email.label }}{{ form.email() }}
+                {{ form.username.label }}{{ form.username() }}
+                {{ form.password.label }}{{ form.password() }}
+                {{ form.pass_confirm.label }}{{ form.pass_confirm() }}
+                {{ form.submit() }}       
+        </form>
+        
+
+    
+{% endblock content %}
