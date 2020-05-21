@@ -9,12 +9,12 @@ def index():
     return render_template('home.html')
 
 @app.route('/welcome')
-@login_required
+#@login_required
 def welcome_user():
     return render_template('welcome_user.html')
     
 @app.route('/logout')
-@login_required
+#@login_required
 def logout():
     logout_user()
     flash('You are logged out!')
