@@ -7,10 +7,10 @@
         <h1 class="center">Welcome to the NEW Warriors Youth Running Website!</h1>
         <h1 class="center">Coming Soon!</h1>
         {% if current_user.is_authenticated %}
-        <h3>Welcome back {{ current_user.username }}!</h3>
+        <h3 class="center">Welcome back {{ current_user.username }}!</h3>
         {% else %}
-        <h3>Please login or register if you are a member of our Team</h3>
-        <h3>If you are part of the general public please enjoy all our public running resources!</h3>
+        <h3 class="center">Please login or register if you are a member of our Team</h3>
+        <h3 class="center">If you are part of the general public please enjoy all our public running resources!</h3>
         {% endif %}
 
     
