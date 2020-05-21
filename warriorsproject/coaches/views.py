@@ -18,7 +18,7 @@ def add():
         db.session.add(new_coach)
         db.session.commit()
         
-        return redirect(url_for('list'))
+        return redirect(url_for('coaches.list'))
         
     return render_template('add_coach.html', form=form) 
 
