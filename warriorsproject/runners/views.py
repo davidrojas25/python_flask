@@ -44,5 +44,5 @@ def delete():
         db.session.delete(runner)
         db.session.commit()
         
-        return redirect(url_for('list_runners'))
+        return redirect(url_for('runners.list'))
     return render_template('delete_runner.html', form=form)
