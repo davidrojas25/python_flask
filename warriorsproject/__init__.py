@@ -19,10 +19,11 @@ app.config['MAIL_PASSWORD'] = "Zapata99!"
 mail = Mail(app)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
+
 app.config['SECRET_KEY'] = "mysecretkey"
 app.config['TESTING'] = False
 app.config['LOGIN_DISABLED'] = False
-app.config['UPLOAD_FOLDER'] = basedir
+app.config['UPLOAD_FOLDER'] = basedir + '/upload'
 ### SQL DB Section #####
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite')
