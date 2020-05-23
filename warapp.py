@@ -135,17 +135,18 @@ def contactus():
         session['email'] = form.email.data
         session['phonenum'] = form.phonenum.data
         session['message'] = form.message.data
-        file = form.file.data
-        filename = secure_filename(form.file.data.filename)
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         msg = Message('New Warrior Contact Us Message', recipients=['wareliteracing@gmail.com'], reply_to=session['email'])
         msg.body = session['message']
-        with app.open_resource(os.path.join(app.config['UPLOAD_FOLDER'], filename)) as fp:
-            msg.attach(filename, "image/png", fp.read())
+        if form.file.data != None:
+            file = form.file.data
+            filename = secure_filename(form.file.data.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            with app.open_resource(os.path.join(app.config['UPLOAD_FOLDER'], filename)) as fp:
+              msg.attach(filename, "image/png", fp.read())
         mail.send(msg)
         
         flash('Thanks for the Message! We will get back to you soon!')
-        return redirect(url_for('contactus'))
+        return redirect(url_for('thankyou'))
         
     return render_template('contactus.html', form=form)
 

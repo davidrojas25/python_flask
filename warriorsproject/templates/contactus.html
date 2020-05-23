@@ -13,30 +13,32 @@
             {{ form.csrf_token }}
             {{ form.hidden_tag() }}
         <br>
-        <div class="row">
+        <div class="row text-light">
         <div class="col">
-            {{ form.first.label }}{{ form.first }}
+            {{ form.first.label }} {{ form.first }}
         </div>
         <div class="col">
-            {{ form.last.label }}{{ form.last }}
+            {{ form.last.label }} {{ form.last }}
         </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row text-light">
         <div class="col">
-            {{ form.email.label }}{{ form.email }} 
+            {{ form.email.label }} {{ form.email }} 
         </div>
         <div class="col">
-            {{ form.phonenum.label }}{{ form.phonenum }}
+            {{ form.phonenum.label }} {{ form.phonenum }}
         </div>
         </div>
         <br>
-        <div class="row">
+        <div class="row text-light">
         <div class="col">
-            {{ form.message.label }}{{ form.message }}
+            {{ form.message.label }}
+            <br>
+            {{ form.message(cols='65',rows='5') }} 
         </div>
         <div class="col">
-            {{ form.file.label }}{{ form.file }}
+            {{ form.file.label }} {{ form.file }}
         </div>
         </div>
         <br>

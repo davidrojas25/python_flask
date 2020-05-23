@@ -42,11 +42,11 @@ class pacing1600(FlaskForm):
     submit = SubmitField('Submit')  
     
 class ContactUsForm(FlaskForm):
-    first = StringField('What is your first name?', validators=[DataRequired()])
-    last = StringField('What is your last name?', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    phonenum = StringField('Phone Number')
-    message = TextAreaField('Enter your message to us here', validators=[DataRequired()])
+    first = StringField('First Name:', validators=[DataRequired()])
+    last = StringField('Last Name:', validators=[DataRequired()])
+    email = StringField('Email:', validators=[DataRequired(), Email()])
+    phonenum = StringField('Phone Number:')
+    message = TextAreaField('Enter Your Message:', validators=[DataRequired()])
     file = FileField('Upload a file to send us', validators=[FileAllowed(['png', 'jpg', 'gif'], 'Invalid file type')])
     submit = SubmitField('SEND')
     
