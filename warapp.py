@@ -160,9 +160,8 @@ def pacechart():
 
 @app.route('/thankyou')
 def thankyou():
-    first = request.args.get('first')
-    last = request.args.get('last')
-    return render_template('thankyou.html', first=first, last=last)
+    
+    return render_template('thankyou.html')
 
 @app.errorhandler(404)
 def page_not_found(e):
