@@ -1,10 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import (StringField, PasswordField, BooleanField, DateTimeField,
                      RadioField, SelectField, TextField, 
-                     TextAreaField, SubmitField, IntegerField)
+                     TextAreaField, SubmitField, IntegerField, FileField)
 from wtforms.validators import DataRequired, InputRequired, Email, EqualTo
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import ValidationError
 from warriorsproject.models import User
+from flask_uploads import UploadSet, IMAGES
+
+
 
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -36,6 +40,15 @@ class pacing1600(FlaskForm):
     strategy = SelectField(u'Select your racing strategy:',
                            choices=[('front_runner', 'Front Runner'), ('even_pace', 'Even Pace'), ('off_pace', 'Run from Behind')])
     submit = SubmitField('Submit')  
+    
+class ContactUsForm(FlaskForm):
+    first = StringField('What is your first name?', validators=[DataRequired()])
+    last = StringField('What is your last name?', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    phonenum = StringField('Phone Number')
+    message = TextAreaField('Enter your message to us here', validators=[DataRequired()])
+    file = FileField('Upload a file to send us', validators=[FileAllowed(['png', 'jpg', 'gif'], 'Invalid file type')])
+    submit = SubmitField('SEND')
     
    
         

@@ -1,8 +1,11 @@
-from warriorsproject import app, db
+from warriorsproject import app, db, mail
 from flask import render_template, session, request, redirect, url_for, flash, abort
-from warriorsproject.warforms import pacing1600, LoginForm, RegistrationForm
+from warriorsproject.warforms import pacing1600, LoginForm, RegistrationForm, ContactUsForm
 from warriorsproject.models import User
 from flask_login import login_user, login_required, logout_user
+from flask_mail import Message
+from werkzeug.utils import secure_filename
+import os
 
 @app.route('/')
 def index():
@@ -121,9 +124,30 @@ def teampics():
 def warriors():
     return render_template('warriors.html')
 
-@app.route('/contactus')
+@app.route('/contactus', methods=['GET', 'POST'])
 def contactus():
-    return render_template('contactus.html')
+    
+    form = ContactUsForm()
+    
+    if form.validate_on_submit():
+        session['first'] = form.first.data
+        session['last'] = form.last.data
+        session['email'] = form.email.data
+        session['phonenum'] = form.phonenum.data
+        session['message'] = form.message.data
+        file = form.file.data
+        filename = secure_filename(form.file.data.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        msg = Message('New Warrior Contact Us Message', recipients=['wareliteracing@gmail.com'], reply_to=session['email'])
+        msg.body = session['message']
+        with app.open_resource(os.path.join(app.config['UPLOAD_FOLDER'], filename)) as fp:
+            msg.attach(filename, "image/png", fp.read())
+        mail.send(msg)
+        
+        flash('Thanks for the Message! We will get back to you soon!')
+        return redirect(url_for('contactus'))
+        
+    return render_template('contactus.html', form=form)
 
 @app.route('/trainingpacecal')
 def trainingpacecal():

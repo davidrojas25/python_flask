@@ -9,36 +9,42 @@
     <div style="background-image: url({{ url_for('static', filename='img/tracksunset.jpg') }})" class="container homepagebg">
     <!-- contact us form starts here-->
     <div class="container">
-    <form action="{{url_for('thankyou')}}">
+        <form action="{{url_for('contactus')}}" method="post" enctype="multipart/form-data">
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
         <br>
         <div class="row">
         <div class="col">
-            <input type="text" class="form-control" name="first" placeholder="First name">
+            {{ form.first.label }}{{ form.first }}
         </div>
         <div class="col">
-            <input type="text" class="form-control" name="last" placeholder="Last name">
-        </div>
-        </div>
-        <br>
-        <div class="row">
-        <div class="col">
-            <input type="email" class="form-control" name="email" placeholder="Email Address">
-        </div>
-        <div class="col">
-            <input type="tel" class="form-control" name="phonenumber"placeholder="Phone Number">
+            {{ form.last.label }}{{ form.last }}
         </div>
         </div>
         <br>
         <div class="row">
         <div class="col">
-        <textarea id="message" class="form-control" name="message" rows="3" placeholder="Tell us what's on your mind..."></textarea>
+            {{ form.email.label }}{{ form.email }} 
+        </div>
+        <div class="col">
+            {{ form.phonenum.label }}{{ form.phonenum }}
         </div>
         </div>
         <br>
-        <input class="btn btn-primary btn-dark" type="submit" value="Submit">
+        <div class="row">
+        <div class="col">
+            {{ form.message.label }}{{ form.message }}
+        </div>
+        <div class="col">
+            {{ form.file.label }}{{ form.file }}
+        </div>
+        </div>
+        <br>
+        {{ form.submit() }}
         <br>
     </form>
     </div>
-       
+    
+    
     
 {% endblock content %}
