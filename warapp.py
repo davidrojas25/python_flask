@@ -160,7 +160,6 @@ def pacechart():
 
 @app.route('/thankyou')
 def thankyou():
-    
     return render_template('thankyou.html')
 
 @app.errorhandler(404)
