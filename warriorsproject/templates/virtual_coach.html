@@ -3,12 +3,22 @@
 
 {% block content %}
 <br>
+<div class="container">
 <!-- Virtual coach page starts here-->
 <h1 class="center">Welcome to our Virtual Coach Utility</h1>
-<br>
+<p>As coaches we are often asked many similar questions right before races. The Virtual Coach Utility
+     is not meant to replace any coach but to aid them to be able to provide thsi info to dozens of runners
+      at a time. We will add tools on this page that can help. Note these are estimations and shouldn't be
+       treated as 100% true for every runner, but instead general estimates that then can be adjusted by runners
+    and coaches alike.  </p>
+    </div>
 <!-- form for 1600 starts here-->
-<div class="container">    
-<form method="post">
+<div class="container bg-danger text-light"> 
+    <h3>1600 Meter Lap Pacer</h3>
+    <p>This tool will help you adjust you pace per lap in the 1600 based on your target time and the race strategy 
+        you plan to execute!
+    </p>   
+<form class="text-light" method="post">
     {{ form.csrf_token }}
     {{ form.hidden_tag() }}
     {{ form.first.label }}{{ form.first }}
@@ -16,7 +26,7 @@
     {{ form.last.label }}{{ form.last }}
     <br>
     <p> What time are you trying to run?</p>
-    <br>
+    
     {{ form.target_min.label }}{{ form.target_min }}
     <br>
     {{ form.target_sec.label }}{{ form.target_sec }}
