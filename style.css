@@ -40,3 +40,8 @@ h2{
     
 }
 .pagetitle {border-bottom:1px solid #cccccc; padding-bottom:30px; margin-bottom:30px;}
+
+.carousel-h500 img
+    {max-height: 200px;
+     height: 200px;
+     width: auto;}
