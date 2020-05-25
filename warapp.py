@@ -72,6 +72,10 @@ def register():
 def successstories():
     return render_template('successstories.html')
 
+@app.route('/schedule')
+def schedule():
+    return render_template('schedule.html')
+
 @app.route('/virtual_coach', methods=['GET', 'POST'])
 def virtual_coach():
     
