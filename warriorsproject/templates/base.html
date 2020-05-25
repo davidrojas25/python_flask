@@ -68,6 +68,16 @@
                     
                   </div>
                 </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Training
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url_for('workouts') }}">Workouts</a>
+                    
+                    
+                  </div>
+                </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url_for('contactus') }}">Contact Us</a>
                 </li>
@@ -87,7 +97,7 @@
             </div>
           </nav>
           <br>
-        <div style="background-image: linear-gradient(black, black), url({{ url_for('static', filename='img/tracksunset.jpg') }})" class="container homepagebg">
+        <div style="background-image:url({{ url_for('static', filename='img/tracksunset.jpg') }})" class="container homepagebg">
           <div>
         <img class="img-fluid logo-medium mx-auto d-block" src="../static/img/warriorlogo_med.png" alt="warriors logo">
           </div>

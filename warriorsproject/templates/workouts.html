@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<br>
+<h1 class="center">Workout Selection</h1>
+<div class="container center">
+    <div class="row">
+      <div class="col-sm">
+        <a href="{{ url_for('marathonpace') }}"><img src="/static/img/marathonfeet.jpg" class="img-fluid" alt="Marathon pace"></a>
+        <a href="{{ url_for('marathonpace') }}"><h2 class="center">Marathon Pace</h2></a>
+      </div>
+      <div class="col-sm">
+        <a href="{{ url_for('hillrepeats') }}"><img src="/static/img/uphillwoman.jpg" class="img-fluid" alt="hill repeats"></a>
+        <a href="{{ url_for('hillrepeats') }}"><h2 class="center">Hill Repeats</h2></a>
+      </div>
+      <div class="col-sm">
+        <a href="{{ url_for('intervals') }}"><img src="/static/img/intervals.jpg" class="img-fluid" alt="1K Intervals"></a>
+        <a href="{{ url_for('hillrepeats') }}"><h2 class="center">1K Repeats</h2></a>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-sm">
+            <a href="{{ url_for('purespeed') }}"><img src="/static/img/speed2.jpg" class="img-fluid" alt="speed workouts"></a>
+            <a href="{{ url_for('purespeed') }}"><h2 class="center">Pure Speed</h2></a>
+        </div>
+        <div class="col-sm">
+            <a href="{{ url_for('threshold') }}"><img src="/static/img/tempo1.jpg" class="img-fluid" alt="tempo"></a>
+            <a href="{{ url_for('threshold') }}"><h2 class="center">Areobic Threshold</h2></a>
+        </div>
+        <div class="col-sm">
+          <img src="/static/img/intervals.jpg" class="img-fluid center" alt="hill repeats">
+          <h2 class="center">Placeholder</h2>
+        </div>
+      </div>
+  </div>        
+
+
+    
+{% endblock content %}

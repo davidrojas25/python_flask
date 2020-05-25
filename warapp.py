@@ -128,6 +128,30 @@ def teampics():
 def warriors():
     return render_template('warriors.html')
 
+@app.route('/workouts')
+def workouts():
+    return render_template('workouts.html')
+
+@app.route('/marathonpace')
+def marathonpace():
+    return render_template('marathonpace.html')
+
+@app.route('/hillrepeats')
+def hillrepeats():
+    return render_template('hillrepeats.html')
+
+@app.route('/intervals')
+def intervals():
+    return render_template('intervals.html')
+
+@app.route('/threshold')
+def threshold():
+    return render_template('threshold.html')
+
+@app.route('/purespeed')
+def purespeed():
+    return render_template('purespeed.html')
+
 @app.route('/contactus', methods=['GET', 'POST'])
 def contactus():
     

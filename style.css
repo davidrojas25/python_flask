@@ -45,3 +45,29 @@ h2{
     {max-height: 200px;
      height: 200px;
      width: auto;}
+
+     .product {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .product .caption {
+        margin-top: 15px;
+      }
+      
+      .product .caption h6 {
+        color: #455a64;
+      }
+      
+      .product .caption .price + .price {
+        margin-left: 15px;
+      }
+      
+      .product.tumbnail {
+        box-shadow: 0 5px 25px 0 transparent;
+        transition: 0.3s linear;
+        padding-top: 0;
+      }
+      
